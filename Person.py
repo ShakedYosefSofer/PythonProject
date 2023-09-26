@@ -11,9 +11,10 @@ class Person():
     def generate_random_number():
         number = ''.join(random.choice(string.digits)
             for _ in range(8))
-            return number
-            random_number = generate_random_number()
-            print(random_number)
+             return number
+
+        random_number = generate_random_number()
+        print(random_number)
 
 
 
