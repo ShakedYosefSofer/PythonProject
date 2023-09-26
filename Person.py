@@ -1,7 +1,7 @@
 import random
 import string
 class Person():
-
+# chck something
     def customers():
         customer1 = ['111111111', 'Alice Smith', 25, '555-111111']
         customer2 = ['222222222', 'Bob Johnson', 35, '555-222222']
