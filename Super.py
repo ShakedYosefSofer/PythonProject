@@ -21,7 +21,7 @@ class Super():
             # here have code to go to usher
             print("usher") #סדרן
             pass
-
+# // 123
 obj = Super()
 obj.get_name()
 obj.hello()
