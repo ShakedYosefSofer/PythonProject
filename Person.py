@@ -1,24 +1,55 @@
-import random
-import string
+import json
+from abc import ABC, abstractmethod
+from typing import List, Dict
+from datetime import date
 
-class Person:
-    # chck something
-    def customers(self):
-        customer1 = ['111111111', 'Alice Smith', 25, '555-111111']
-        customer2 = ['222222222', 'Bob Johnson', 35, '555-222222']
-        customer3 = ['333333333', 'Charlie Brown', 45, '555-333333']
-        customer4 = ['123456789', 'John Doe', 30, '555-123456']
+class Person(ABC):
+    def __init__(self, id: str, name: str, age: int, phone: str):
+        self.id = id
+        self.name = name
+        self.age = age
+        self.phone = phone
 
-    def generate_random_number(self):
-        number = ''.join(random.choice(string.digits)
-        for _ in range(8))
-        return number
+    @abstractmethod
+    def __str__(self) -> str:
+        pass
 
-#  Person
-person = Person()
-random_number = person.generate_random_number()
-print(random_number)
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Person):
+            return self.id == other.id
+        return False
 
+
+
+
+
+
+
+
+
+
+
+# import random
+# import string
+#
+# class Person:
+#     # chck something
+#     def customers(self):
+#         customer1 = ['111111111', 'Alice Smith', 25, '555-111111']
+#         customer2 = ['222222222', 'Bob Johnson', 35, '555-222222']
+#         customer3 = ['333333333', 'Charlie Brown', 45, '555-333333']
+#         customer4 = ['123456789', 'John Doe', 30, '555-123456']
+#
+#     def generate_random_number(self):
+#         number = ''.join(random.choice(string.digits)
+#         for _ in range(8))
+#         return number
+#
+# #  Person
+# person = Person()
+# random_number = person.generate_random_number()
+# print(random_number)
+#
 
 
 
