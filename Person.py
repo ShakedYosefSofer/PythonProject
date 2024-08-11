@@ -1,14 +1,24 @@
-import json
 from abc import ABC, abstractmethod
-from typing import List, Dict
-from datetime import date
+
 
 class Person(ABC):
     def __init__(self, id: str, name: str, age: int, phone: str):
-        self.id = id
-        self.name = name
-        self.age = age
-        self.phone = phone
+        try:
+            if not isinstance(id, str):
+                raise ValueError("ID must be a string")
+            if not isinstance(name, str):
+                raise ValueError("Name must be a string")
+            if not isinstance(age, int) or age <= 0:
+                raise ValueError("Age must be a positive integer")
+            if not isinstance(phone, str):
+                raise ValueError("Phone must be a string")
+
+            self.id = id
+            self.name = name
+            self.age = age
+            self.phone = phone
+        except ValueError as e:
+            print(f"Error initializing Person: {e}")
 
     @abstractmethod
     def __str__(self) -> str:
@@ -18,54 +28,3 @@ class Person(ABC):
         if isinstance(other, Person):
             return self.id == other.id
         return False
-
-
-
-
-
-
-
-
-
-
-
-# import random
-# import string
-#
-# class Person:
-#     # chck something
-#     def customers(self):
-#         customer1 = ['111111111', 'Alice Smith', 25, '555-111111']
-#         customer2 = ['222222222', 'Bob Johnson', 35, '555-222222']
-#         customer3 = ['333333333', 'Charlie Brown', 45, '555-333333']
-#         customer4 = ['123456789', 'John Doe', 30, '555-123456']
-#
-#     def generate_random_number(self):
-#         number = ''.join(random.choice(string.digits)
-#         for _ in range(8))
-#         return number
-#
-# #  Person
-# person = Person()
-# random_number = person.generate_random_number()
-# print(random_number)
-#
-
-
-
-#
-#
-# class Person(ABC):
-#     def __init__(self, id, name, age, phone):
-#         self.id = id
-#         self.name = name
-#         self.age = age
-#         self.phone = phone
-#
-#     @abstractmethod
-#     def __str__(self):
-#         pass
-#
-#     def __eq__(self, other):
-#         if isinstance(other, Person):
-#             return self.id
