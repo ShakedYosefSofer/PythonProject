@@ -40,4 +40,3 @@ class Product:
             category=data['category']
         )
 
-# פונקציות לשמירה וטעינה לא נדרשות יותר

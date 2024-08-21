@@ -34,3 +34,27 @@ class Customer(Person):
             print(f"Error during purchase: {e}")
         except Exception as e:
             print(f"An unexpected error occurred during purchase: {e}")
+    def add_product_to_cart(self, product: Product):
+        """מאפשרת ללקוח להוסיף מוצר לעגלת הקניות מתוך רשימת המוצרים על המדפים"""
+        try:
+            if not isinstance(product, Product):
+                raise ValueError("Can only add instances of Product")
+            self.shopping_list.append(product)
+            print(f"Added {product.name} to {self.name}'s cart.")
+        except ValueError as e:
+            print(f"Error adding product to cart: {e}")
+
+    def purchase_products(self, cashier: 'Cashier'):
+        """הקופאית מבצעת רכישה של כל המוצרים בעגלת הקניות של הלקוח"""
+        try:
+            if not self.shopping_list:
+                raise ValueError("Shopping list is empty. Nothing to purchase.")
+            for product in self.shopping_list:
+                cashier.sell_to_customer(self, product)
+            self.purchased_items.extend(self.shopping_list)
+            print(f"Purchased items: {[product.name for product in self.purchased_items]}")
+            self.shopping_list.clear()
+        except ValueError as e:
+            print(f"Error during purchase: {e}")
+        except Exception as e:
+            print(f"An unexpected error occurred during purchase: {e}")

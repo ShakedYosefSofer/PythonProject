@@ -1,8 +1,7 @@
 from typing import List
-
-from PythonProject.PythonProject.Employee import Employee
-from PythonProject.PythonProject.Product import Product
-
+from Employee import Employee
+from Supermarket import Supermarket
+from Product import Product
 
 class GeneralManager(Employee):
     def __init__(self, id: str, name: str, age: int, phone: str, employee_number: str, management_level: str, department: str):
@@ -10,45 +9,31 @@ class GeneralManager(Employee):
         self.management_level = management_level
         self.department = department
 
-    def add_employee(self, employee: Employee, supermarket: 'Supermarket'):
-        supermarket.add_employee(employee)
+    def add_employee(self, employee: Employee, supermarket: Supermarket):
+        if employee not in supermarket.employees:
+            supermarket.add_employee(employee)
+            print(f"Employee {employee.name} added to the supermarket.")
+        else:
+            print(f"Employee {employee.name} already exists in the supermarket.")
 
-    def remove_employee(self, employee: Employee, supermarket: 'Supermarket'):
-        supermarket.remove_employee(employee)
+    def remove_employee(self, employee: Employee, supermarket: Supermarket):
+        if employee in supermarket.employees:
+            supermarket.remove_employee(employee)
+            print(f"Employee {employee.name} removed from the supermarket.")
+        else:
+            print(f"Employee {employee.name} does not exist in the supermarket.")
 
-    def update_employee(self, employee: Employee):
-        # Implement logic to update employee information
-        pass
+    def update_employee(self, employee: Employee, new_name: str = None, new_phone: str = None, new_department: str = None):
+        if new_name:
+            employee.name = new_name
+        if new_phone:
+            employee.phone = new_phone
+        if new_department:
+            employee.department = new_department
+        print(f"Employee {employee.id} updated.")
 
-    def get_shelf_products(self, supermarket: 'Supermarket') -> List[Product]:
+    def get_shelf_products(self, supermarket: Supermarket) -> List[Product]:
         return supermarket.get_products()
 
-    def get_daily_revenue(self, supermarket: 'Supermarket') -> float:
+    def get_daily_revenue(self, supermarket: Supermarket) -> float:
         return supermarket.get_daily_revenue()
-
-
-
-
-
-
-# class GeneralManager(Manager):
-#     def __init__(self, id, name, age, phone, employee_number, management_level, department):
-#         super().__init__(id, name, age, phone, employee_number)
-#         self.management_level = management_level
-#         self.department = department
-#
-#     def add_employee(self, employee, supermarket):
-#         supermarket.add_employee(employee)
-#
-#     def remove_employee(self, employee, supermarket):
-#         supermarket.remove_employee(employee)
-#
-#     def update_employee(self, employee):
-#         # Implement logic to update employee information
-#         pass
-#
-#     def get_shelf_products(self, supermarket):
-#         return supermarket.get_products()
-#
-#     def get_daily_revenue(self, supermarket):
-#         return supermarket.get_daily_revenue()

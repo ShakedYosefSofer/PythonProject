@@ -1,28 +1,17 @@
-from Classes.main import Person
-
+from Person import Person
 
 class Employee(Person):
     def __init__(self, id: str, name: str, age: int, phone: str, employee_number: str):
         super().__init__(id, name, age, phone)
-        self.employee_number = employee_number
+        try:
+            if not employee_number or not isinstance(employee_number, str):
+                raise ValueError("Employee number must be a non-empty string")
+            self.employee_number = employee_number
+        except ValueError as e:
+            print(f"Error initializing employee: {e}")
 
     def __str__(self) -> str:
         return f"Employee: {self.name} (Employee #: {self.employee_number})"
 
 
 
-
-
-#Stop here *****
-
-
-
-
-
-# class Employee(Person):
-#     def __init__(self, id, name, age, phone, employee_number):
-#         super().__init__(id, name, age, phone)
-#         self.employee_number = employee_number
-#
-#     def __str__(self):
-#         return f"Employee: {self.name} (Employee #: {self.employee_number})"
