@@ -7,12 +7,12 @@ class Customer(Person):
         super().__init__(id, name, age, phone)
         self.shopping_cart: List[Product] = []
         self.purchase_history: List[Product] = []
+        self.balance: float = 1000.0  # start money
 
     def __str__(self) -> str:
         return f"Customer: {self.name} (ID: {self.id})"
 
     def add_product_to_cart(self, product: Product):
-        """מאפשרת ללקוח להוסיף מוצר לעגלת הקניות מתוך רשימת המוצרים על המדפים"""
         try:
             if not isinstance(product, Product):
                 raise ValueError("Can only add instances of Product")
@@ -22,7 +22,6 @@ class Customer(Person):
             print(f"Error adding product to cart: {e}")
 
     def complete_purchase(self, cashier: 'Cashier'):
-        """הקופאית מבצעת רכישה של כל המוצרים בעגלת הקניות של הלקוח"""
         try:
             if not self.shopping_cart:
                 raise ValueError("Shopping cart is empty. Nothing to purchase.")
